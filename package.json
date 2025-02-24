@@ -1,0 +1,27 @@
+{
+    "name": "node-js",
+    "license": "MIT",
+    "version": "1.0.0",
+    "author": "max",
+    "scripts": {
+        "nvm": "nvm use 18.17.1",
+        "watch": "tsc -w",
+        "dev": "nodemon dist/src/express.js",
+        "start": "nodemon src/express.ts",
+        "debug": "nodemon --inspect express.js"
+    },
+    "dependencies": {
+        "express": "^4.21.1",
+        "yarn": "^1.22.22"
+    },
+    "devDependencies": {
+        "@types/express": "^5.0.0",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^22.10.1",
+        "jest": "^29.7.0",
+        "nodemon": "^3.1.7",
+        "ts-jest": "^29.2.5",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.7.2"
+    }
+}
