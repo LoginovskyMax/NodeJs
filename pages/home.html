@@ -7,10 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="app"></div>
-    <h1>Home page</h1>
-    <p>Hi from Node JS server</p>
-    <button type="button" id="btn">Волшебная кнопка</button>
+     <header>
+        <h1>Students</h1>
+        <button type="button" id="add">Добавить студента</button>
+     </header>
+     <section id="table" class="table">
+      <div class="table__header">
+        <p>Имя</p>
+        <p>Пол</p>
+        <p>Английский</p>
+        <p>Математика</p>
+        <p>Физика</p>
+        <p>Изменить</p>
+      </div>
+     </section>
+     <div id="modal" class="modal">
+           <div class="modal_content">
+              <p>Создать нового студента</p>
+              <input type="text" placeholder="Имя" id="name">
+              <input type="text" placeholder="Пол" id="gender">
+              <input type="number" placeholder="Английский" id="english">
+              <input type="number" placeholder="Физика" id="physics">
+              <input type="number" placeholder="Математика" id="math">
+              <button type="button" id="create">Создать</button>
+              <button type="button" id="modalClose">X</button>
+           </div>
+     </div>
+
+  
     <script src="./index.js"></script>
 </body>
 </html>
