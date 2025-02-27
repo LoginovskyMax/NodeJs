@@ -11,19 +11,22 @@
         <h1>Students</h1>
         <button type="button" id="add">Добавить студента</button>
      </header>
-     <section id="table" class="table">
+     <section class="table">
       <div class="table__header">
         <p>Имя</p>
         <p>Пол</p>
         <p>Английский</p>
         <p>Математика</p>
         <p>Физика</p>
+        <p>Удалить</p>
         <p>Изменить</p>
+
       </div>
+      <div id="table" class="table"></div>
      </section>
      <div id="modal" class="modal">
            <div class="modal_content">
-              <p>Создать нового студента</p>
+              <p id="modalTitle">Создать нового студента</p>
               <input type="text" placeholder="Имя" id="name">
               <input type="text" placeholder="Пол" id="gender">
               <input type="number" placeholder="Английский" id="english">

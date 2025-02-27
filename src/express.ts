@@ -9,6 +9,15 @@ const staticMid = express.static('./pages')
 app.use(bodyJsonMiddleWare)
 app.use(staticMid)
 
+interface IStudent {
+  id: number,
+  name: string,
+  gender: string,
+  physics: number,
+  maths: number,
+  english: number
+}
+
 
 
 app.get('/',async (req, res) => {
@@ -22,6 +31,7 @@ function getPath(file:string){
 
 async function getStudents(){
   const jsonFile = await fs.readFile(getPath('db.json'), 'utf8')
+  
   return JSON.parse(jsonFile)
 }
 
@@ -31,30 +41,37 @@ async function setStudents(file:Object[]){
 
 app.route('/students')
   .get(async (req, res) => {
-     const students = await getStudents()
+     const students:IStudent[] = await getStudents()
     res.json(students)
    })
   .post(async(req, res) => {
     // получаем всех студентов из файла
-    const students = await getStudents()
+    const students:IStudent[] = await getStudents()
     req.body.id = Date.now()
     students.push(req.body)
     // записываем новый список студентов в файл
     await setStudents(students)
     res.sendStatus(201)
   })
-  .put((req, res) => {
-    res.json('Update the book')
+  .put(async (req, res) => {
+       // получаем всех студентов из файла
+       const students:IStudent[] = await getStudents()
+       let changedStudentIndex = students.findIndex(student => student.id === req.body.id)
+       students.splice(changedStudentIndex, 1, req.body)
+      //  записываем новый список студентов в файл
+       await setStudents(students)
+       res.sendStatus(201)
   })
 
-
-app.get('/users/:id', (req, res) => {
-    // const user = db.users.find(user => user.id === +req.params.id)
-    // if(!user){
-    //   res.sendStatus(404)
-    //   return
-    // }
-    //   res.json(user)
+app.delete('/students/:id', async (req, res) => {
+        // получаем всех студентов из файла
+        console.log(req.params.id);
+        let students:IStudent[] = await getStudents()
+        console.log(students);
+        students = students.filter(student => student.id !== +req.params.id)
+        // записываем новый список студентов в файл
+        await setStudents(students)
+        res.sendStatus(200)
 })
 
 
